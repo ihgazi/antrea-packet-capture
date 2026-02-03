@@ -54,7 +54,7 @@ kubectl annotate pod traffic-generator tcpdump.antrea.io-
 
 - Annotation Trigger: Starts a packet capture when a pod is annotated with `tcpdump.antrea.io: "<N>"`, where N is the number of rotating pcap files.
 
-- Tcpdump Management: Launches a `tcpdump` process in the host network namespace with the following parameters: `tcpdump -i any -C 1 -W <N> -w /captures/captres-<pod-name>.pcap host <pod-ip>`.
+- Tcpdump Management: Launches a `tcpdump` process in the host network namespace with the following parameters: `tcpdump -i any -C 1 -W <N> -w /captures/capture-<pod-name>.pcap host <pod-ip>`.
 
 - Cleanup: Stops the `tcpdump` process using context cancellation signal and performs a glob-based search to delete all rotated .pcap files, when the anonotatin is removed.
 
