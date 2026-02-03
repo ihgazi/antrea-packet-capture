@@ -1,0 +1,61 @@
+Name:             traffic-generator
+Namespace:        kube-system
+Priority:         0
+Service Account:  default
+Node:             kind-worker/172.19.0.2
+Start Time:       Tue, 03 Feb 2026 11:23:29 +0530
+Labels:           app=traffic-gen
+Annotations:      tcpdump.antrea.io: 5
+Status:           Running
+IP:               10.10.1.6
+IPs:
+  IP:  10.10.1.6
+Containers:
+  alpine:
+    Container ID:  containerd://5bb3901f7c4fd0f6b0a0f12175bba64618658d9e24a26c981f36a16eaff4c7ba
+    Image:         alpine:latest
+    Image ID:      docker.io/library/alpine@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+    Args:
+      while true; do
+        ping -c 1 google.com;
+        sleep 2;
+      done
+      
+    State:          Running
+      Started:      Tue, 03 Feb 2026 11:23:37 +0530
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-lwx4h (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-lwx4h:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  28m   default-scheduler  Successfully assigned kube-system/traffic-generator to kind-worker
+  Normal  Pulling    28m   kubelet            spec.containers{alpine}: Pulling image "alpine:latest"
+  Normal  Pulled     28m   kubelet            spec.containers{alpine}: Successfully pulled image "alpine:latest" in 7.629s (7.629s including waiting). Image size: 3872672 bytes.
+  Normal  Created    28m   kubelet            spec.containers{alpine}: Container created
+  Normal  Started    28m   kubelet            spec.containers{alpine}: Container started
